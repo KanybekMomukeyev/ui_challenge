@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+import 'package:flutterapp/main_screen.dart';
+
+class BottomTabbarExample_UNUSED extends StatefulWidget {
+  const BottomTabbarExample_UNUSED({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _BottomTabbarExample_UNUSEDState();
+}
+
+class _BottomTabbarExample_UNUSEDState extends State<BottomTabbarExample_UNUSED>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  static const _kTabPages = <Widget>[
+    MainScreenPage(),
+    Center(child: Icon(Icons.alarm, size: 64.0, color: Colors.cyan)),
+    Center(child: Icon(Icons.forum, size: 64.0, color: Colors.blue)),
+  ];
+  static const _kTabs = <Tab>[
+    Tab(icon: Icon(Icons.cloud), text: 'Tab1'),
+    Tab(icon: Icon(Icons.alarm), text: 'Tab2'),
+    Tab(icon: Icon(Icons.forum), text: 'Tab3'),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: _kTabPages.length,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: TabBarView(
+        controller: _tabController,
+        children: _kTabPages,
+      ),
+      bottomNavigationBar: Material(
+        color: Colors.blue,
+        child: TabBar(
+          tabs: _kTabs,
+          controller: _tabController,
+        ),
+      ),
+    );
+  }
+}
