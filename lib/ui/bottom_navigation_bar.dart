@@ -60,61 +60,9 @@ class _BottomNavigationBarExampleState
           ),
           label: '',
           backgroundColor: Colors.black),
-      BottomNavigationBarItem(
-          icon: Padding(
-            padding: const EdgeInsets.only(top: 18.0),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: <Widget>[
-                const Icon(
-                  IcoMoonIcons.bell,
-                  size: 20,
-                  color: AppColors.textWhiteColor,
-                ),
-                Positioned(
-                  left: 10,
-                  top: -10,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.popOrange,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    constraints: const BoxConstraints(
-                      minWidth: 16,
-                      minHeight: 16,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 2.0),
-                      child: Text(
-                        '2',
-                        style: AppTextStyles.mediumStyle(context)?.copyWith(
-                          color: AppColors.textWhiteColor,
-                          fontSize: 10,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          // activeIcon: Padding(
-          //   padding: EdgeInsets.only(top: 18.0),
-          //   child: Icon(
-          //     IcoMoonIcons.bell,
-          //     size: 20,
-          //     color: AppColors.textWhiteColor,
-          //   ),
-          // ),
-          // icon: Padding(
-          //   padding: EdgeInsets.only(top: 18.0),
-          //   child: Icon(
-          //     IcoMoonIcons.bell,
-          //     size: 20,
-          //     color: AppColors.textWhiteColor,
-          //   ),
-          // ),
+      const BottomNavigationBarItem(
+          icon: _BadgedIcon(badgeText: '2'),
+          activeIcon: _BadgedIcon(badgeText: '2'),
           label: '',
           backgroundColor: Colors.black),
     ];
@@ -125,9 +73,15 @@ class _BottomNavigationBarExampleState
         backgroundColor: AppColors.dateBackgroundBlackColor,
         elevation: 0,
         selectedLabelStyle: const TextStyle(
-            color: Color(0xFFA67926), fontFamily: 'Montserrat', fontSize: 14.0),
+          color: Color(0xFFA67926),
+          fontFamily: FontFamilies.matterFontFamily,
+          fontSize: 14.0,
+        ),
         unselectedLabelStyle: TextStyle(
-            color: Colors.grey[600], fontFamily: 'Montserrat', fontSize: 12.0),
+          color: Colors.grey[600],
+          fontFamily: FontFamilies.matterFontFamily,
+          fontSize: 12.0,
+        ),
         selectedItemColor: const Color(0xFFA67926),
         unselectedItemColor: Colors.grey[600],
         showUnselectedLabels: true,
@@ -154,6 +108,56 @@ class _BottomNavigationBarExampleState
     return Scaffold(
       body: tabPages[_currentTabIndex],
       bottomNavigationBar: theme,
+    );
+  }
+}
+
+class _BadgedIcon extends StatelessWidget {
+  final String badgeText;
+  const _BadgedIcon({
+    Key? key,
+    required this.badgeText,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 18.0),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: <Widget>[
+          const Icon(
+            IcoMoonIcons.bell,
+            size: 20,
+            color: AppColors.textWhiteColor,
+          ),
+          Positioned(
+            left: 10,
+            top: -10,
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.popOrange,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              constraints: const BoxConstraints(
+                minWidth: 16,
+                minHeight: 16,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 2.0),
+                child: Text(
+                  badgeText,
+                  style: AppTextStyles.mediumStyle(context)?.copyWith(
+                    color: AppColors.textWhiteColor,
+                    fontSize: 10,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
