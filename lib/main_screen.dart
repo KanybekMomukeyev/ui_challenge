@@ -113,13 +113,17 @@ class _MainScreenPageState extends State<MainScreenPage> {
                 curve: Curves.fastOutSlowIn,
                 color: Colors.transparent,
                 width: MediaQuery.of(context).size.width,
-                height: isShownBottomWidget ? 186.0 : 144.0,
+                height: isShownBottomWidget
+                    ? AppBarHeight.containerShownHeight(context)
+                    : AppBarHeight.containerHiddenHeight(context),
                 child: Stack(
                   children: <Widget>[
                     AnimatedPositioned(
                       width: MediaQuery.of(context).size.width,
                       height: isShownBottomWidget ? 95.0 : 0.0,
-                      top: isShownBottomWidget ? 143.0 : 140.0,
+                      top: isShownBottomWidget
+                          ? AppBarHeight.positionedShownTop(context)
+                          : AppBarHeight.positionedHiddenTop(context),
                       duration: const Duration(milliseconds: 400),
                       curve: Curves.linearToEaseOut,
                       child: const FixedDatesRow(),
@@ -133,6 +137,9 @@ class _MainScreenPageState extends State<MainScreenPage> {
                     switch (index) {
                       case 0:
                         {
+                          if (AppPlatform.isAndroid(context)) {
+                            return const SizedBox(height: 116);
+                          }
                           return const SizedBox(height: 125);
                         }
                       case 1:

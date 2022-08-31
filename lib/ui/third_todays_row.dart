@@ -86,68 +86,36 @@ class _TodayItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(4.0),
             onTap: () {},
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 (index == 0)
-                    ? Container(
-                        width: 70.0,
-                        height: 70.0,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/production_name.png')),
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            bottomLeft: Radius.circular(4.0),
-                          ),
-                        ),
-                      )
-                    : Container(
-                        width: 70.0,
-                        height: 70.0,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/what_has_been.png')),
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            bottomLeft: Radius.circular(4.0),
-                          ),
-                        ),
-                      ),
+                    ? const _LeftImage(
+                        assetPath: 'assets/images/production_name.png')
+                    : const _LeftImage(
+                        assetPath: 'assets/images/what_has_been.png'),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
+                  padding: const EdgeInsets.only(left: 16, right: 0, top: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        child: Text(
-                          title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          softWrap: false,
-                          style: AppTextStyles.semiboldStyle(context)?.copyWith(
-                              fontSize: 14,
-                              color: AppColors.dateBackgroundBlackColor),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                            overflow: TextOverflow.ellipsis,
-                            subTitile,
-                            style: AppTextStyles.regularStyle(context)
-                                ?.copyWith(
-                                    fontSize: 10, color: AppColors.black10)),
-                      ),
+                      _EllipsisText(
+                          title: title,
+                          textStyle: AppTextStyles.semiboldStyle(context)
+                              ?.copyWith(
+                                  fontSize: 14,
+                                  color: AppColors.dateBackgroundBlackColor)),
+                      _EllipsisText(
+                          title: subTitile,
+                          textStyle: AppTextStyles.regularStyle(context)
+                              ?.copyWith(
+                                  fontSize: 10, color: AppColors.black10)),
                     ],
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(left: 0, top: 0),
+                  padding: EdgeInsets.only(left: 5, top: 0),
                   child: Icon(
                     IcoMoonIcons.arrow_right_1,
                     size: 10,
@@ -157,6 +125,55 @@ class _TodayItem extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _EllipsisText extends StatelessWidget {
+  const _EllipsisText({
+    Key? key,
+    required this.title,
+    required this.textStyle,
+  }) : super(key: key);
+
+  final String title;
+  final TextStyle? textStyle;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.transparent,
+      width: MediaQuery.of(context).size.width * 0.6,
+      child: Text(
+        title,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        softWrap: false,
+        style: textStyle,
+      ),
+    );
+  }
+}
+
+class _LeftImage extends StatelessWidget {
+  final String assetPath;
+  const _LeftImage({
+    Key? key,
+    required this.assetPath,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 70.0,
+      height: 70.0,
+      decoration: BoxDecoration(
+        image: DecorationImage(image: AssetImage(assetPath)),
+        color: Colors.blue,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(4.0),
+          bottomLeft: Radius.circular(4.0),
         ),
       ),
     );

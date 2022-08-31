@@ -34,6 +34,53 @@ class FontFamilies {
   static const matterFontFamily = 'Matter';
 }
 
+class AppPlatform {
+  AppPlatform._();
+
+  static bool isIOS(BuildContext context) {
+    return Theme.of(context).platform == TargetPlatform.iOS;
+  }
+
+  static bool isAndroid(BuildContext context) {
+    return Theme.of(context).platform == TargetPlatform.android;
+  }
+}
+
+class AppBarHeight {
+  AppBarHeight._();
+
+  static double containerHiddenHeight(BuildContext context) {
+    final value1 = MediaQuery.of(context).padding.top + kToolbarHeight;
+    if (AppPlatform.isIOS(context)) {
+      return 144.0;
+    }
+    return value1 + 36;
+  }
+
+  static double containerShownHeight(BuildContext context) {
+    final value1 = MediaQuery.of(context).padding.top + kToolbarHeight;
+    if (AppPlatform.isIOS(context)) {
+      return 186.0;
+    }
+    return value1 + 80;
+  }
+
+  static double positionedShownTop(BuildContext context) {
+    if (AppPlatform.isIOS(context)) {
+      return 143.0;
+    }
+    final value1 = MediaQuery.of(context).padding.top + kToolbarHeight;
+    return value1 + 38;
+  }
+
+  static double positionedHiddenTop(BuildContext context) {
+    if (AppPlatform.isIOS(context)) {
+      return 130.0;
+    }
+    return 100.0;
+  }
+}
+
 class AppTextStyles {
   AppTextStyles._();
 
