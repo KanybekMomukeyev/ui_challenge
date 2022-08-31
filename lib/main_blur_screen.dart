@@ -8,6 +8,7 @@ import 'package:flutterapp/ui/second_complete_row.dart';
 import 'package:flutterapp/ui/first_dates_row.dart';
 import 'package:flutterapp/ui/fourth_network_row.dart';
 import 'package:flutterapp/ui/third_todays_row.dart';
+import 'package:flutterapp/ui/circle_dot.dart';
 
 class MainBlurScreen_UNUSED extends StatefulWidget {
   const MainBlurScreen_UNUSED({

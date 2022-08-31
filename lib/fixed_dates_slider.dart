@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutterapp/constants.dart';
 import 'package:flutterapp/ui/circle_dot.dart';
 
@@ -18,38 +17,44 @@ class FixedDatesRow extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const <Widget>[
-            _FirstFixedDateItem(),
-            _FixedDateItem(
+            _ExpandbleItem(
+              todayTitle: 'TODAY',
+              title: 'Mon',
+              subTitle: '18 Oct.',
+              isDotWidgetShown: true,
+              dotColor: AppColors.redBright,
+            ),
+            _ExpandbleItem(
               title: 'Tue',
               subTitle: '19 Oct.',
               isDotWidgetShown: false,
               dotColor: AppColors.blueFaded,
             ),
-            _FixedDateItem(
+            _ExpandbleItem(
               title: 'Wed',
               subTitle: '20 Oct.',
               isDotWidgetShown: true,
               dotColor: AppColors.blueFaded,
             ),
-            _FixedDateItem(
+            _ExpandbleItem(
               title: 'Thu',
               subTitle: '21 Oct.',
               isDotWidgetShown: true,
               dotColor: AppColors.redBright,
             ),
-            _FixedDateItem(
+            _ExpandbleItem(
               title: 'Fri',
               subTitle: '22 Oct.',
               isDotWidgetShown: false,
               dotColor: AppColors.blueFaded,
             ),
-            _FixedDateItem(
+            _ExpandbleItem(
               title: 'Sat',
               subTitle: '23 Oct.',
               isDotWidgetShown: false,
               dotColor: AppColors.blueFaded,
             ),
-            _FixedDateItem(
+            _ExpandbleItem(
               title: 'Sun',
               subTitle: '24 Oct.',
               isDotWidgetShown: false,
@@ -62,85 +67,16 @@ class FixedDatesRow extends StatelessWidget {
   }
 }
 
-class _FirstFixedDateItem extends StatelessWidget {
-  const _FirstFixedDateItem({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 4, right: 2, left: 4, bottom: 4),
-      child: Container(
-        decoration: const BoxDecoration(
-          color: AppColors.dateBackgroundBlackColor,
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-        ),
-        height: 36,
-        width: 76,
-        padding: const EdgeInsets.only(top: 7.5),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: RichText(
-                  textAlign: TextAlign.left,
-                  text: TextSpan(children: [
-                    TextSpan(
-                      style: AppTextStyles.semiboldStyle(context)?.copyWith(
-                          fontSize: 10, color: AppColors.grey100Color),
-                      text: "TODAY",
-                    ),
-                    TextSpan(
-                      style: AppTextStyles.mediumStyle(context)
-                          ?.copyWith(fontSize: 10),
-                      text: "  Mon",
-                    ),
-                  ]),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 8.0, top: 0),
-                    child: CircleDot(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      "18 Oct.",
-                      style: AppTextStyles.mediumStyle(context)
-                          ?.copyWith(fontSize: 10),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _FixedDateItem extends StatelessWidget {
+class _ExpandbleItem extends StatelessWidget {
+  final String? todayTitle;
   final String title;
   final String subTitle;
-
   final bool isDotWidgetShown;
   final Color? dotColor;
 
-  const _FixedDateItem({
+  const _ExpandbleItem({
     Key? key,
+    this.todayTitle,
     required this.title,
     required this.subTitle,
     required this.isDotWidgetShown,
@@ -156,96 +92,78 @@ class _FixedDateItem extends StatelessWidget {
           color: AppColors.dateBackgroundBlackColor,
           borderRadius: BorderRadius.all(Radius.circular(4)),
         ),
-        height: 36,
-        width: 60,
+        constraints: const BoxConstraints(
+          maxHeight: 36,
+          minHeight: 36,
+          maxWidth: double.infinity,
+        ),
         padding: const EdgeInsets.only(top: 7.5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              flex: 1,
+            Flexible(
               child: Padding(
-                padding: const EdgeInsets.only(left: 0.0),
-                child: Text(
-                  title,
-                  style: AppTextStyles.mediumStyle(context)
-                      ?.copyWith(fontSize: 10),
-                  textAlign: TextAlign.center,
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    (todayTitle != null)
+                        ? Padding(
+                            padding: const EdgeInsets.only(left: 0.0, top: 0.0),
+                            child: Text(
+                              todayTitle!,
+                              style: AppTextStyles.semiboldStyle(context)
+                                  ?.copyWith(
+                                      fontSize: 10,
+                                      color: AppColors.grey100Color),
+                            ),
+                          )
+                        : const SizedBox(),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                      child: Text(
+                        title,
+                        style: AppTextStyles.mediumStyle(context)
+                            ?.copyWith(fontSize: 10),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Visibility(
-                    visible: isDotWidgetShown,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 0.0),
-                      child: CircleDot(circleColor: dotColor),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 2.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Visibility(
+                      visible: isDotWidgetShown,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: CircleDot(circleColor: dotColor),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5.0),
-                    child: Text(
-                      subTitle,
-                      style: AppTextStyles.mediumStyle(context)
-                          ?.copyWith(fontSize: 10),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: isDotWidgetShown ? 5.0 : 15.0,
+                          right: isDotWidgetShown ? 8.0 : 15.0),
+                      child: Text(
+                        subTitle,
+                        style: AppTextStyles.mediumStyle(context)
+                            ?.copyWith(fontSize: 10),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-// ------------------------------------------  //
-// UNUSED
-class BasicCarouselSlider extends StatelessWidget {
-  const BasicCarouselSlider({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    List<int> list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return Container(
-          color: Colors.white.withOpacity(1.0),
-          height: 50,
-          width: constraints.maxWidth,
-          child: CarouselSlider.builder(
-            options: CarouselOptions(
-              enableInfiniteScroll: false,
-              aspectRatio: 4.0,
-              enlargeCenterPage: false,
-              viewportFraction: 0.15,
-              disableCenter: false,
-              initialPage: 3,
-            ),
-            itemCount: list.length,
-            itemBuilder: (BuildContext context, int index, int realIndex) {
-              return Container(
-                height: 10,
-                width: 60,
-                color: Colors.amber,
-                margin:
-                    const EdgeInsets.only(top: 3, bottom: 3, left: 3, right: 3),
-                child: Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: Text("$realIndex"),
-                ),
-              );
-            },
-          ),
-        );
-      },
     );
   }
 }
