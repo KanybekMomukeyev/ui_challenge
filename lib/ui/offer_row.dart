@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/constants.dart';
+import 'package:flutterapp/constants/constants.dart';
 
 class OfferRow extends StatelessWidget {
   final int index;

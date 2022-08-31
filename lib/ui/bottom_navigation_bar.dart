@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/main_screen.dart';
-import 'package:flutterapp/constants.dart';
-import 'package:flutterapp/ui/icomoon_icons.dart';
+import 'package:flutterapp/constants/constants.dart';
+import 'package:flutterapp/constants/icomoon_icons.dart';
 
-class BottomNavigationBarExample extends StatefulWidget {
-  const BottomNavigationBarExample({Key? key}) : super(key: key);
+class CustomBottomNavigationBar extends StatefulWidget {
+  const CustomBottomNavigationBar({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _BottomNavigationBarExampleState();
+  State<StatefulWidget> createState() => _CustomBottomNavigationBarState();
 }
 
-class _BottomNavigationBarExampleState
-    extends State<BottomNavigationBarExample> {
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int _currentTabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     final tabPages = <Widget>[
       const MainScreenPage(),
-      const Center(child: Icon(Icons.alarm, size: 64.0, color: Colors.cyan)),
-      const Center(child: Icon(Icons.forum, size: 64.0, color: Colors.blue)),
+      const Scaffold(
+          body:
+              Center(child: Icon(Icons.alarm, size: 64.0, color: Colors.cyan))),
+      const Scaffold(
+          body:
+              Center(child: Icon(Icons.forum, size: 64.0, color: Colors.blue))),
     ];
     final bottmonNavBarItems = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(

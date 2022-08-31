@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import 'package:flutterapp/fixed_dates_slider.dart';
-import 'package:flutterapp/constants.dart';
-import 'package:flutterapp/offer_row.dart';
+import 'package:flutterapp/ui/fixed_dates_slider.dart';
+import 'package:flutterapp/constants/constants.dart';
+import 'package:flutterapp/ui/offer_row.dart';
 import 'dart:ui';
 import 'package:flutterapp/ui/second_complete_row.dart';
 import 'package:flutterapp/ui/first_dates_row.dart';

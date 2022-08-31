@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: whiteMaterial,
         brightness: Brightness.light,
       ),
-      home: const BottomNavigationBarExample(),
+      home: const CustomBottomNavigationBar(),
       // home: const MainBlurScreen(),
     );
   }

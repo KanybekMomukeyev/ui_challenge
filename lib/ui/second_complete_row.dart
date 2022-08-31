@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/constants.dart';
+import 'package:flutterapp/constants/constants.dart';
 import 'package:flutterapp/ui/comon_arrow_button.dart';
 
 class SecondCompleteRow extends StatelessWidget {

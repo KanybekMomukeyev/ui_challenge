@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/constants.dart';
-import 'package:flutterapp/ui/icomoon_icons.dart';
+import 'package:flutterapp/constants/constants.dart';
+import 'package:flutterapp/constants/icomoon_icons.dart';
 
 class CommonArrowButton extends StatelessWidget {
   final void Function()? onTap;
