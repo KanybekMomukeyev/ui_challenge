@@ -27,8 +27,6 @@ class FixedDatesRow extends StatelessWidget {
             _ExpandbleItem(
               title: 'Tue',
               subTitle: '19 Oct.',
-              isDotWidgetShown: false,
-              dotColor: AppColors.blueFaded,
             ),
             _ExpandbleItem(
               title: 'Wed',
@@ -45,20 +43,14 @@ class FixedDatesRow extends StatelessWidget {
             _ExpandbleItem(
               title: 'Fri',
               subTitle: '22 Oct.',
-              isDotWidgetShown: false,
-              dotColor: AppColors.blueFaded,
             ),
             _ExpandbleItem(
               title: 'Sat',
               subTitle: '23 Oct.',
-              isDotWidgetShown: false,
-              dotColor: AppColors.blueFaded,
             ),
             _ExpandbleItem(
               title: 'Sun',
               subTitle: '24 Oct.',
-              isDotWidgetShown: false,
-              dotColor: AppColors.blueFaded,
             ),
           ],
         ),
@@ -79,8 +71,8 @@ class _ExpandbleItem extends StatelessWidget {
     this.todayTitle,
     required this.title,
     required this.subTitle,
-    required this.isDotWidgetShown,
-    required this.dotColor,
+    this.isDotWidgetShown = false,
+    this.dotColor,
   }) : super(key: key);
 
   @override
