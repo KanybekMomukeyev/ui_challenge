@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/main_screen.dart';
-import 'package:flutterapp/main_blur_screen.dart';
-import 'dart:ui';
 import 'package:flutterapp/ui/bottom_navigation_bar.dart';
-import 'package:flutterapp/ui/bottom_tab_bar.dart';
 
 const MaterialColor whiteMaterial = MaterialColor(
   0xFFFFFFFF,
@@ -37,9 +33,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: whiteMaterial,
         brightness: Brightness.light,
       ),
-      // home: const BottomTabbarExample(),
       home: const BottomNavigationBarExample(),
-      // home: const MainScreenPage(),
       // home: const MainBlurScreen(),
     );
   }
