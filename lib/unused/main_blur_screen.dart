@@ -55,6 +55,14 @@ class _MainBlurScreen_UNUSEDState extends State<MainBlurScreen_UNUSED> {
   }
 
   @override
+  void dispose() {
+    _controller
+      ..removeListener(_scrollListener)
+      ..dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultStickyHeaderController(
       child: Scaffold(

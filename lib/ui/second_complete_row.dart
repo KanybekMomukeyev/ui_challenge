@@ -8,38 +8,40 @@ class SecondCompleteRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.green[100],
-      color: Colors.white,
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const <Widget>[
-            _SecondCompleteItem(
-              title:
-                  "Complete your profile tooptimize your exposure in job searches.",
-              index: 0,
-              buttonTitle: "Complete profile",
-              isProgressShown: true,
-            ),
-            _SecondCompleteItem(
-              title:
-                  "Connect with people you might know and extend your network.",
-              index: 1,
-              buttonTitle: "Connect",
-            ),
-            _SecondCompleteItem(
+        // color: Colors.green[100],
+        color: Colors.white,
+        height: 136,
+        child: ListView.builder(
+          // SingleChildScrollView removed as optimization
+          physics: const AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.only(bottom: 0.0),
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return const _SecondCompleteItem(
+                title:
+                    "Complete your profile tooptimize your exposure in job searches.",
+                index: 0,
+                buttonTitle: "Complete profile",
+                isProgressShown: true,
+              );
+            }
+            if (index == 1) {
+              return const _SecondCompleteItem(
+                title:
+                    "Connect with people you might know and extend your network.",
+                index: 1,
+                buttonTitle: "Connect",
+              );
+            }
+            return const _SecondCompleteItem(
               title: "Get verified as an industry professional.",
               index: 2,
               buttonTitle: "Get verified",
-            ),
-          ],
-        ),
-      ),
-    );
+            );
+          },
+          itemCount: 3,
+        ));
   }
 }
 

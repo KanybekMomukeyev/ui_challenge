@@ -54,6 +54,14 @@ class _MainScreenPageState extends State<MainScreenPage> {
   }
 
   @override
+  void dispose() {
+    _controller
+      ..removeListener(_scrollListener)
+      ..dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultStickyHeaderController(
       child: Scaffold(

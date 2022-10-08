@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/ui/bottom_navigation_bar.dart';
+import 'package:flutterapp/custom_bottom_navigation_bar.dart';
 
 const MaterialColor whiteMaterial = MaterialColor(
   0xFFFFFFFF,
